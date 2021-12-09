@@ -39,16 +39,15 @@
             <tr valign="middle">
                 <th>{{$loop->iteration}}</th>
                 <td>{{$product->name}}</td>
-                <td width="20%">{{$product->price}}</td>
+                <td width="20%">{{$product->description}}</td>
                 <td>{{$product->price}}</td>
                 <td width="25%">{{$product->remarks}}</td>
                 <td class="d-flex">
-                    <a type="button" href="" class="">Edit</a> &nbsp;&nbsp;
+                    <a type="button" href="{{ route('products.edit',$product->id) }}" class="">Edit</a> &nbsp;&nbsp;
                     <form method="POST" action="{{ route('products.destroy',$product->id) }}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger"
-                                onclick="confirm('Are You Sure To Delete this Product')">Delete
+                        <button type="submit" class="btn btn-danger">Delete
                         </button>
                     </form>
                 </td>

@@ -17,36 +17,38 @@
 <body>
 <div class="row">
     <div class="col-sm-6">
-        <h1 align="center" class="bg-primary">Add New Product</h1>
-        <form action="{{ route('products.store') }}" method="POST">
-                @csrf
-          <div class="row">
-              <div class="col-sm-6">
-                  <input type="text" class="form-control mb-3" placeholder="Product Name" name="name" required autofocus>
-              </div>
-          </div>
-
+        <h1 align="center" class="bg-primary">Update Product</h1>
+        <form action="{{ route('products.update', $products->id) }}" method="POST">
+            @csrf
+            @method('PUT')
             <div class="row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control mb-3" placeholder="Product Price" name="price" required>
+                    <input type="text" class="form-control mb-3" placeholder="Product Name" name="name" value="{{$products->name}}" required autofocus>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control mb-3" placeholder="Product Description" name="description" required>
+                    <input type="text" class="form-control mb-3" placeholder="Product Price" name="price" value="{{$products->price}}" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control mb-3" placeholder="Product Description" name="description" value="{{$products->description}}" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control mb-3" placeholder="Product Remarks" name="remarks" required>
+                    <input type="text" class="form-control mb-3" placeholder="Product Remarks" name="remarks" value="{{$products->remarks}}" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
-            <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </div>
+
         </form>
         <div class="row">
             <div class="col-sm-6 mt-4">
@@ -58,4 +60,5 @@
 
 </body>
 </html>
+
 
