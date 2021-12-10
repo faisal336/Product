@@ -15,47 +15,50 @@
     </style>
 </head>
 <body>
-<div class="row">
-    <div class="col-sm-6">
-        <h1 align="center" class="bg-primary">Add New Product</h1>
-        <form action="{{ route('products.store') }}" method="POST">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1 align="center" class="bg-primary">Add New Product</h1>
+            <form action="{{ route('products.store') }}" method="POST">
                 @csrf
-          <div class="row">
-              <div class="col-sm-6">
-                  <input type="text" class="form-control mb-3" placeholder="Product Name" name="name" required autofocus>
-              </div>
-          </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control mb-3" placeholder="Product Name" name="name"  autofocus>
+                    </div>
+                </div>
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control mb-3" placeholder="Product Price" name="price" required>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control mb-3" placeholder="Product Price" name="price" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control mb-3" placeholder="Product Description" name="description" required>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control mb-3" placeholder="Product Description"
+                               name="description" required>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control mb-3" placeholder="Product Remarks" name="remarks" required>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control mb-3" placeholder="Product Remarks" name="remarks"
+                               required>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-            <button type="submit" class="btn btn-primary">Create</button>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
                 </div>
-            </div>
-        </form>
-        <div class="row">
-            <div class="col-sm-6 mt-4">
-                <a href="{{ route('products.index') }}" class="btn btn-success btn-warning">Back</a>
+            </form>
+            <div class="row">
+                <div class="col-sm-6 mt-4">
+                    <a href="{{ route('products.index') }}" class="btn btn-success btn-warning">Back</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>
 

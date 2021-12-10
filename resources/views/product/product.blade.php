@@ -15,14 +15,20 @@
     </style>
 </head>
 <body>
-<sapn class="font-semibold text-xl leading-tight">
-    <h1 align="center">Welcome to Products</h1>
-    <a type="button" class="btn btn-primary" href="{{route('products.create')}}">Add New Product</a>
-</sapn>
-
+<div class="container">
 <div class="card card-bgcolor">
+
     <table class="table table-striped">
         <thead class="card-header">
+        <tr>
+            <td colspan="3" align="center">
+                <sapn class="font-semibold text-xl">
+                    <span class="" style="font-size:xxx-large;">Welcome to Products</span>
+                    </span></td>
+            <td colspan="3" align="right" valign="middle">
+                    <a type="button" class="btn btn-primary" href="{{route('products.create')}}">Add New Product</a>
+            </td>
+           </tr>
         <tr>
             <th>#</th>
             <th>Product Name</th>
@@ -43,7 +49,9 @@
                 <td>{{$product->price}}</td>
                 <td width="25%">{{$product->remarks}}</td>
                 <td class="d-flex">
-                    <a type="button" href="{{ route('products.edit',$product->id) }}" class="">Edit</a> &nbsp;&nbsp;
+                    <a type="button" href="{{ route('products.edit',$product->id) }}">Edit</a> &nbsp;&nbsp;
+                    <a type="button" href="{{ route('products.show',$product->id) }}">View</a> &nbsp;&nbsp;
+
                     <form method="POST" action="{{ route('products.destroy',$product->id) }}">
                         @csrf
                         @method('DELETE')
@@ -59,6 +67,7 @@
         @endforelse
         </tbody>
     </table>
+</div>
 </div>
 </body>
 </html>

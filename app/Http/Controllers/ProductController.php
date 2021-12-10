@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -16,6 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+
         return view('product.product')->with('products', $products);
     }
 
@@ -37,17 +37,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $products = Product::create($request->all());
 
-        $products = new Product;
-        $products->name = $request->input('name');
-        $products->price = $request->input('price');
-        $products->description = $request->input('description');
-        $products->remarks = $request->input('remarks');
-        $products->added_by= auth()->user()->id;
-        $products->save();
-        return redirect()->route('products.index')->with('message', 'Customer created successfully');
-
-
+        return redirect()->route('products.show', $products);
     }
 
     /**
@@ -58,7 +50,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        echo "Show Controller";
+        return view('product.showproduct')
+            ->with('product', $product);
     }
 
     /**
@@ -69,8 +62,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $products=Product::find($product->id);
-        return view('product.editproduct', compact('products','product'));
+        return view('product.editproduct')
+            ->with('products', $product);
     }
 
     /**
@@ -82,16 +75,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-//        dd("Update");
-        $product=Product::find($product->id);
-        $product->name = $request->input('name');
-        $product->price = $request->input('price');
-        $product->description = $request->input('description');
-        $product->remarks = $request->input('remarks');
-        $product->added_by= auth()->user()->id;
-        $product->update();
-        return redirect()->route('products.index')->with('message', 'Product Deleted Successfully!');
+        $product->update($request->all());
 
+        return redirect()->route('products.edit', $product->id)
+            ->with('success', 'Updated Successfully');
     }
 
     /**
@@ -102,8 +89,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-
         $product->delete();
-        return redirect()->route('products.index')->with('message', 'Product Deleted Successfully!');
+
+        return redirect()->route('products.index');
     }
 }
